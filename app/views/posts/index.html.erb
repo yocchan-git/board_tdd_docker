@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="text-center mt-3">
+        <h1>掲示板</h1>
+        <%= link_to("新規投稿する", new_post_path, class: "btn btn-primary") %>
+    </div>
+
+    <% @posts.each do |post| %>
+        <div class="posts-list mt-3 mb-3">
+            <h3 class="m-3"><%= link_to(post.title, post_path(post), class: "link") %></h3>
+            <p class="ms-3 me-3"><%= post.content %></p>
+                
+            <% if comments = Comment.where(post_id: post.id) %>
+                <% comments.each do |comment| %>
+                    <% user = User.find_by(id: comment.user_id) %>
+                    <div class="comment-body">
+                        <div class="comment-content">
+                            <p class="ms-3 me-3"><i class="fa-solid fa-comment"></i> <%= user.name %> : <%= comment.comment %></p>
+                        </div>
+                        <% if current_user.id == comment.user_id %>
+                            <div class="comment-link">
+                                <%= link_to("編集","/comments/#{comment.id}/edit", class: "link ms-4 me-2") %>
+                                <%= link_to("削除","/comments/#{comment.id}", data: { turbo_method: :delete }, class: "link") %>
+                            </div>
+                        <% end %>
+                    </div>
+                <% end %>
+            <% end %>
+
+            <% user = User.find_by(id: post.user_id) %>
+                <div class="text-end me-3">
+                    <p><%= user.name %></p>
+                    <div class="mb-3">
+
+                    <% likes = Like.where(post_id: post.id).count %>
+                    <% if like = Like.find_by(user_id: current_user.id,post_id: post.id) %>
+                        <%= link_to("/likes/#{like.id}", data: { turbo_method: :delete }) do %>
+                            <i class="fa-solid fa-heart" style="color: #e811a4;"></i>
+                        <% end %>
+                    <% else %>
+                        <%= link_to("/likes/#{post.id}", data: { "turbo-method": :post }) do %>
+                            <i class="fa-regular fa-heart" style="color: #f005dc;"></i>
+                        <% end %>
+                    <% end %>
+                    <span><%= likes %></span>
+
+                        <%= link_to("コメントする", "comments/#{post.id}/new",class: "btn btn-warning ms-3") %>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    <% end %>
+</div>

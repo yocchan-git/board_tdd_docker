@@ -1,0 +1,24 @@
+<header>
+    <div class="container">
+        <div class="header-title">
+            <%= link_to("掲示板アプリ", posts_path, class: "link") %>
+        </div>
+
+        <div class="header-nav">
+            <nav>
+            <% if logged_in? %>
+                <li><%= current_user.name %></li>
+                <li><%= link_to("ログアウト", logout_path, data: { turbo_method: :delete }, class: "link") %></li>
+            <% else %>
+                <li><%= link_to("ログイン", login_path, class: "link") %></li>
+                <li><%= link_to("サインアップ", users_new_path, class: "link") %></li>
+            <% end %>
+            </nav>
+        </div>
+    </div>
+</header>
+<% unless flash.empty? %>
+<div class="flash-body">
+    <p class="flash-content text-center"><%= flash[:notice] %></p>
+</div>
+<% end %>

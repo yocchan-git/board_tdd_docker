@@ -1,0 +1,7 @@
+like_one:
+  user: inactive
+  post: post_one
+
+like_two:
+  user: michael
+  post: post_two

@@ -1,0 +1,20 @@
+<% provide(:title, 'コメント返信フォーム') %>
+<div class="container">
+    <div class="text-center">
+        <h1>コメントを書く</h1>
+    </div>
+
+    <div class="form-width">
+        <%= form_with(url: "/comments/new", method: "post") do |f| %>
+            <%= render 'shared/error_comment_messages' %>
+
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= f.hidden_field :post_id, value: @post_id %>
+
+            <%= f.label :comment, "コメント" %><br>
+            <%= f.text_area :comment, class: 'form-control' %><br><br>
+
+            <%= f.submit "コメントする", class: "btn btn-primary" %>
+        <% end %>
+    </div>
+</div>

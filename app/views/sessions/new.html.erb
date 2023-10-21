@@ -1,0 +1,21 @@
+<% provide(:title, "ログイン") %>
+<div class="container">
+    <div class="text-center">
+        <h1>ログイン</h1>
+    </div>
+
+    <div class="form-width">
+        <%= form_with(url: "login", method: "post" ) do |f| %>
+
+        <%= f.label :email, "メールアドレス" %><br>
+        <%= f.email_field :email, class: 'form-control' %><br><br>
+
+        <%= f.label :password, "パスワード" %><br>
+        <%= f.password_field :password, class: 'form-control' %><br><br>
+
+        <%= f.submit "Log in", class: "btn btn-primary" %>
+        <% end %>
+
+        <p>新規登録は <%= link_to "こちら", "/users/new" %>から</p>
+    </div>
+</div>

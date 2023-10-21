@@ -1,0 +1,9 @@
+post_one:
+  user: michael
+  title: MyString
+  content: MyString
+
+post_two:
+  user: inactive
+  title: MyString
+  content: MyString

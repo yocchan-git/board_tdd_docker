@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+    before_action :can_login_user, only:[:show]
+    before_action :edit_user_only_login_user, only:[:edit, :update]
+
     def new
         @user = User.new
     end
@@ -15,5 +18,21 @@ class UsersController < ApplicationController
         else
             render 'new', status: :unprocessable_entity
         end
+    end
+
+    def edit
+    end
+
+    def update
+        if @user.update(name: params[:name], email: params[:email])
+            flash[:notice] = "ユーザー情報を更新しました。"
+            redirect_to "/users/#{@user.id}"
+        else
+            render 'edit', status: :unprocessable_entity
+        end
+    end
+
+    def show
+        @user = User.find(params[:id])
     end
 end

@@ -69,3 +69,10 @@ class UserPasswordTest < UserTest
     assert_not @user.valid?
   end
 end
+
+# 修正するときのパスワードはなくてもいい
+class UserEditPasswordTest < UserTest
+  test "修正する時のパスワードは空でもいい" do
+    assert @user.update(name: "よしはる", email: "fuyu_1201@yahoo.ne.jp")
+  end
+end

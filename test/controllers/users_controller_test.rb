@@ -26,3 +26,51 @@ class SignupTest < UsersControllerTest
     assert_redirected_to posts_path
   end
 end
+
+class UsersShowControllerTest < UsersControllerTest
+  test "ユーザー情報が見れるのはログインしているユーザーのみ" do
+    get "/users/#{@user.id}"
+    assert_redirected_to login_path
+  end
+
+  test "ログインしていたらユーザー詳細ページにアクセスできる" do
+    log_in_as @user
+    get "/users/#{@user.id}"
+    assert_response :success
+  end
+end
+
+class UsersEditControllerTest < UsersControllerTest
+  test "ログインしていないとリダイレクトする" do
+    get "/users/#{@user.id}/edit"
+    assert_redirected_to login_path
+  end
+
+  test "ユーザー情報を編集できるのはログインしているユーザーのみ" do
+    log_in_as @user
+    get "/users/#{@user.id}/edit"
+    assert_response :success
+  end
+end
+
+class UsersUpdateControllerTest < UsersControllerTest
+
+  test "ログインしていないとリダイレクトする" do
+    post "/users/#{@user.id}", params: { name: "よっちゃん", email: "fuyu_1201@yahoo.ne.jp", password: "password"}
+    assert_redirected_to login_path
+  end
+
+  test "アップデート成功の時の動き" do
+    log_in_as @user
+    post "/users/#{@user.id}", params: { name: "よっちゃん", email: "fuyu_1201@yahoo.ne.jp"}
+    assert_not flash.empty?
+    assert_redirected_to "/users/#{@user.id}"
+  end
+
+  test "アップデート失敗の時の動き" do
+    log_in_as @user
+    post "/users/#{@user.id}", params: { name: "", email: ""}
+    assert_response :unprocessable_entity
+    assert_template "users/edit"
+  end
+end

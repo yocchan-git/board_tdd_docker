@@ -1,0 +1,20 @@
+<% provide(:title, 'ユーザー編集画面') %>
+<div class="container">
+    <div class="text-center">
+        <h1>ユーザー編集画面</h1>
+    </div>
+
+    <div class="form-width">
+        <%= form_with(url: "/users/#{@user.id}", method: "post") do |f| %>
+            <%= render 'shared/error_messages' %>
+
+            <%= f.label :name, "名前" %><br>
+            <%= f.text_field :name, value: @user.name, class: 'form-control' %><br><br>
+
+            <%= f.label :email, "メールアドレス" %><br>
+            <%= f.email_field :email, value: @user.email, class: 'form-control' %><br><br>
+
+            <%= f.submit "決定", class: "btn btn-primary" %>
+        <% end %>
+    </div>
+</div>

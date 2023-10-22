@@ -1,0 +1,26 @@
+<% provide(:title, 'ユーザー一覧画面') %>
+<div class="container">
+    <div class="text-center">
+        <h1>ユーザー一覧画面</h1>
+    </div>
+
+    <div class="user-index">
+        <% @users.each do |user| %>
+        <div class="user-index-flex">
+            <div>
+                <%= link_to(user.name,"/users/#{user.id}", class: "link") %>
+            </div>
+            <div class="ms-3 mb-3">
+                <strong id="followers" class="stat">
+                <%= user.followers.count %>
+                <span>followers</span>
+                </strong>
+            </div>
+        </div>
+        <% end %>
+        <div class="text-center">
+                <%= link_to("投稿一覧", posts_path, class: "btn btn-primary") %>
+                <button type="button" class="btn btn-secondary" onclick="history.back();">戻る</button>
+        </div>
+    </div>
+</div>

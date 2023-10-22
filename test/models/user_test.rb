@@ -4,6 +4,8 @@ require "test_helper"
 class UserTest < ActiveSupport::TestCase
   def setup
     @user = User.new(name: "よっちゃん", email: "fuyu_1201@yahoo.ne.jp", password: "password")
+    @michael = users(:michael)
+    @inactive = users(:inactive)
   end
 end
 
@@ -70,9 +72,41 @@ class UserPasswordTest < UserTest
   end
 end
 
-# 修正するときのパスワードはなくてもいい
+# 修正に関してのモデルテスト
 class UserEditPasswordTest < UserTest
   test "修正する時のパスワードは空でもいい" do
     assert @user.update(name: "よしはる", email: "fuyu_1201@yahoo.ne.jp")
+  end
+end
+
+
+# フォローするに関連するテスト
+class UserFollowingPasswordTest < UserTest
+  test "フォローしているかの論理値を返すfollewing?メソッド" do
+    assert_not @michael.following?(@inactive)
+  end
+
+  test "ユーザーをフォローするfollowメソッド" do
+    @michael.follow(@inactive)
+    assert @michael.following?(@inactive)
+  end
+
+  test "ユーザーのフォローを解除するunfollowメソッド" do
+    @michael.follow(@inactive)
+    @michael.unfollow(@inactive)
+    assert_not @michael.following?(@inactive)
+  end
+
+  test "ユーザーは自分自身をフォローできない" do
+    @michael.follow(@michael)
+    assert_not @michael.following?(@michael)
+  end
+end
+
+# フォローされることに関連するテスト
+class UserFollowedPasswordTest < UserTest
+  test "正しくフォローされているかテストする" do
+    @michael.follow(@inactive)
+    assert @inactive.followers.include?(@michael)
   end
 end

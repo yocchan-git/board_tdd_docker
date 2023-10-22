@@ -17,4 +17,13 @@ class UsersShowTest < ActionDispatch::IntegrationTest
     get "/users/#{@user.id}"
     assert_select "a[href=?]", "/users/#{@user.id}/edit"
   end
+
+  test "詳細ページのユーザーが投稿したpostを表示する" do
+    log_in_as @user
+    get "/users/#{@user.id}"
+    @user.posts.each do |post|
+      assert_select "h3", post.title
+      assert_select "p", post.content
+    end
+  end
 end

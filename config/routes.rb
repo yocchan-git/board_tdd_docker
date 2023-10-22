@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get "users/new", to:"users#new"
   post "users/new", to:"users#create"
+  get "users", to:"users#index"
   get "users/:id/edit", to:"users#edit"
   post "users/:id", to:"users#update"
   get "users/:id", to:"users#show"
@@ -19,4 +20,5 @@ Rails.application.routes.draw do
   delete "likes/:id", to:"likes#destroy"
 
   resources :posts
+  resources :relationships, only: [:create, :destroy]
 end

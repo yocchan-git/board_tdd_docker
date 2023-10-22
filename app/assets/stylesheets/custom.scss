@@ -73,3 +73,30 @@ input {
     display: flex;
     justify-content: flex-start;
 }
+
+.stats {
+overflow: auto;
+margin-top: 0;
+padding-right: 10px;
+display: flex;
+justify-content: center;
+strong {
+    display: block;
+}
+}
+
+.follow_form_div{
+    width: 100px;
+}
+.follow-relations{
+    display: flex;
+    justify-content: center;
+}
+// ユーザー一覧のレイアウトをそろえる
+.user-index-flex{
+    display: flex;
+}
+.user-index{
+    width: 230px;
+    margin: 0 auto;
+}

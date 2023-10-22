@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
-    before_action :can_login_user, only:[:show]
+    before_action :can_login_user, only:[:index, :show]
     before_action :edit_user_only_login_user, only:[:edit, :update]
+
+    def index
+        @users = User.all
+    end
 
     def new
         @user = User.new
@@ -34,5 +38,6 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
+        @posts = Post.where(user_id: @user.id)
     end
 end

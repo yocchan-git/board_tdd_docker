@@ -5,7 +5,7 @@
     </div>
 
     <div class="form-width">
-        <%= form_with(url: "/users/new", method: "post") do |f| %>
+        <%= form_with(url: "/users/new", method: "post", multipart: true) do |f| %>
             <%= render 'shared/error_messages' %>
 
             <%= f.label :name, "名前" %><br>
@@ -16,6 +16,10 @@
 
             <%= f.label :password, "パスワード" %><br>
             <%= f.password_field :password, class: 'form-control' %><br><br>
+
+            <%= f.label :image, "画像" %><br>
+            <%= f.file_field :image, class:'form-control', accept: 'image/*' %><br><br>
+            <%= f.hidden_field :user_image_cache %>
 
             <%= f.submit "決定", class: "btn btn-primary" %>
         <% end %>

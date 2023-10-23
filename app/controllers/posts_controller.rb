@@ -3,7 +3,8 @@ class PostsController < ApplicationController
     before_action :can_login_user, only: [:show, :new, :create]
 
     def index
-        @posts = Post.order(created_at: :desc)
+        @q = Post.ransack(params[:q])
+        @posts = @q.result.includes(:user).order("created_at desc")
     end
 
     def show

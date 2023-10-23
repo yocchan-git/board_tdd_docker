@@ -4,6 +4,19 @@
         <%= link_to("新規投稿する", new_post_path, class: "btn btn-primary") %>
     </div>
 
+    <div class="form-width">
+        <%= search_form_for @q do |f| %>
+
+        <div class="mt-3">
+            <%= f.label :title_cont, "投稿検索" %>
+            <%= f.search_field :title_cont, class: 'form-control', placeholder: '検索ワード' %>
+
+            <%= f.submit "検索", class: "btn btn-primary mt-3", style: "width:60px;" %>
+            <%= link_to("クリア", posts_path, class: "btn btn-secondary ms-2 mt-3") %>
+        </div>
+        <% end %>
+    </div>
+
     <% @posts.each do |post| %>
         <div class="posts-list mt-3 mb-3">
             <h3 class="m-3"><%= link_to(post.title, post_path(post), class: "link") %></h3>

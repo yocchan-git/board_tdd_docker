@@ -3,7 +3,8 @@ class UsersController < ApplicationController
     before_action :edit_user_only_login_user, only:[:edit, :update]
 
     def index
-        @users = User.all
+        @q = User.ransack(params[:q])
+        @users = @q.result.order("created_at desc")
     end
 
     def new

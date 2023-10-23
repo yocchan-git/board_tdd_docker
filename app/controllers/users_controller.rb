@@ -14,7 +14,8 @@ class UsersController < ApplicationController
     def create
         @user = User.new(name: params[:name],
                          email: params[:email],
-                         password: params[:password])
+                         password: params[:password],
+                         image: params[:image])
         if @user.save
             reset_session
             login @user

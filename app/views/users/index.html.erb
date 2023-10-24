@@ -21,9 +21,7 @@
         <% @users.each do |user| %>
         <div class="user-index-flex">
             <div>
-                <%= #image_tag user.image.thumb.url
-                 %>
-                <%= image_tag user.image.url, size: '50x50' %>
+                <%= image_tag user.image.thumb.url %>
                 <%= link_to(user.name,"/users/#{user.id}", class: "link") %>
             </div>
             <div class="ms-3 mt-3 mb-3">

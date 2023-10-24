@@ -7,8 +7,7 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:password])
       reset_session
       login @user
-      flash[:notice] = "ログイン成功"
-      redirect_to posts_path
+      redirect_to posts_path, notice: "ログイン成功"
     else
       flash[:notice] = "メールアドレスかパスワードが間違っています"
       render 'new', status: :unprocessable_entity
@@ -17,7 +16,6 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out
-    flash[:notice] = "ログアウトしました。"
-    redirect_to login_path, status: :see_other
+    redirect_to login_path, status: :see_other, notice: "ログアウトしました。"
   end
 end

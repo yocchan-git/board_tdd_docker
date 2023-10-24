@@ -20,8 +20,7 @@ class PostsController < ApplicationController
         @post.user_id = current_user.id
 
         if @post.save
-            flash[:notice] = "新規投稿を作成しました。"
-            redirect_to posts_path
+            redirect_to posts_path, notice: "新規投稿を作成しました。"
         else
             render 'new', status: :unprocessable_entity
         end
@@ -32,8 +31,7 @@ class PostsController < ApplicationController
 
     def update
         if @post.update(params_posts)
-            flash[:notice] = "更新に成功しました。"
-            redirect_to post_path(@post)
+            redirect_to post_path(@post), notice: "更新に成功しました。"
         else
             render 'edit', status: :unprocessable_entity
         end
@@ -41,8 +39,7 @@ class PostsController < ApplicationController
 
     def destroy
         @post.destroy
-        flash[:notice] = "投稿が削除されました。"
-        redirect_to posts_path, status: :see_other
+        redirect_to posts_path, status: :see_other, notice: "投稿が削除されました。"
     end
 
     private

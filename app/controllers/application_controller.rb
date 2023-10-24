@@ -6,12 +6,10 @@ class ApplicationController < ActionController::Base
         if current_user
             @post = Post.find(params[:id])
             unless @current_user.id == @post.user_id
-                flash[:notice] = "権限がありません。"
-                redirect_to posts_path
+                redirect_to posts_path, notice: "権限がありません。"
             end
         else
-            flash[:notice] = "権限がありません。"
-            redirect_to login_path
+            redirect_to login_path, notice: "権限がありません。"
         end
     end
 
@@ -20,12 +18,10 @@ class ApplicationController < ActionController::Base
         if current_user
             @comment = Comment.find(params[:id])
             unless @current_user.id == @comment.user_id
-                flash[:notice] = "権限がありません。"
-                redirect_to posts_path
+                redirect_to posts_path, notice: "権限がありません。"
             end
         else
-            flash[:notice] = "権限がありません。"
-            redirect_to login_path
+            redirect_to login_path, notice: "権限がありません。"
         end
     end
 
@@ -34,20 +30,17 @@ class ApplicationController < ActionController::Base
         if current_user
             @user = User.find(params[:id])
             unless @current_user.id == @user.id
-                flash[:notice] = "権限がありません。"
-                redirect_to "/users/#{@user.id}"
+                redirect_to "/users/#{@user.id}", notice: "権限がありません。"
             end
         else
-            flash[:notice] = "権限がありません。"
-            redirect_to login_path
+            redirect_to login_path, notice: "権限がありません。"
         end
     end
 
     # ログインしているかのチェック
     def can_login_user
         unless current_user
-            flash[:notice] = "権限がありません"
-            redirect_to login_path
+            redirect_to login_path, notice: "権限がありません。"
         end
     end
 end

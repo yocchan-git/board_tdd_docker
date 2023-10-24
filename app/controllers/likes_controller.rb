@@ -8,8 +8,7 @@ class LikesController < ApplicationController
         if @like.save
             redirect_to posts_path
         else
-            flash[:notice] = "いいねの追加に失敗しました。"
-            redirect_to posts_path
+            redirect_to posts_path, notice: "いいねの追加に失敗しました。"
         end
     end
 
@@ -18,8 +17,7 @@ class LikesController < ApplicationController
         if @like.destroy
             redirect_to posts_path
         else
-            flash[:notice] = "いいねの削除に失敗しました。"
-            redirect_to posts_path
+            redirect_to posts_path, notice: "いいねの削除に失敗しました。"
         end
     end
 end

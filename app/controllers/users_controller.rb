@@ -19,8 +19,7 @@ class UsersController < ApplicationController
         if @user.save
             reset_session
             login @user
-            flash[:notice] = "新規登録に成功しました。"
-            redirect_to posts_path
+            redirect_to posts_path, notice: "新規登録に成功しました。"
         else
             render 'new', status: :unprocessable_entity
         end
@@ -31,8 +30,7 @@ class UsersController < ApplicationController
 
     def update
         if @user.update(name: params[:name], email: params[:email])
-            flash[:notice] = "ユーザー情報を更新しました。"
-            redirect_to "/users/#{@user.id}"
+            redirect_to "/users/#{@user.id}", notice: "ユーザー情報を更新しました。"
         else
             render 'edit', status: :unprocessable_entity
         end

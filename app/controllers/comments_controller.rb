@@ -12,8 +12,7 @@ class CommentsController < ApplicationController
                                post_id: params[:post_id],
                                comment: params[:comment])
         if @comment.save
-            flash[:notice] = "コメントを送信しました。"
-            redirect_to posts_path
+            redirect_to posts_path, notice: "コメントを送信しました。"
         else
             render "new", status: :unprocessable_entity
         end
@@ -25,8 +24,7 @@ class CommentsController < ApplicationController
 
     def update
         if @comment.update(comment: params[:comment])
-            flash[:notice] = "コメントを編集しました。"
-            redirect_to posts_path
+            redirect_to posts_path, notice: "コメントを編集しました。"
         else
             render 'edit', status: :unprocessable_entity
         end
@@ -34,7 +32,6 @@ class CommentsController < ApplicationController
 
     def destroy
         @comment.destroy
-        flash[:notice] = "コメントを削除しました"
-        redirect_to posts_path, status: :see_other
+        redirect_to posts_path, status: :see_other, notice: "コメントを削除しました。"
     end
 end

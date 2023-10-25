@@ -6,3 +6,15 @@ ja:
       previous: <i class="fas fa-angle-left"></i>
       next: <i class="fas fa-angle-right"></i>
       truncate: "..."
+
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              blank: "空になっています。入力してください。"
+            email:
+              blank: "空になっています。入力してください。"
+            password:
+              blank: "空になっています。入力してください。"

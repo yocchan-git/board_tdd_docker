@@ -1,8 +1,4 @@
-<% provide(:title, 'ユーザー編集画面') %>
-<div class="container">
-    <div class="text-center">
-        <h1>ユーザー編集画面</h1>
-    </div>
+<%= render 'shared/form_common', title: 'ユーザー編集画面' %>
 
     <div class="form-width">
         <%= form_with(url: "/users/#{@user.id}", method: "post") do |f| %>

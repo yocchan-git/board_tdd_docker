@@ -1,8 +1,4 @@
- <% provide(:title, 'コメント編集画面') %>
-<div class="container">
-    <div class="text-center">
-        <h1>コメント編集画面</h1>
-    </div>
+<%= render 'shared/form_common', title: 'コメント編集画面' %>
 
     <div class="form-width">
         <%= form_with(url: "/comments/#{@comment.id}/update", method: "post") do |f| %>

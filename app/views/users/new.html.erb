@@ -1,8 +1,4 @@
-<% provide(:title, 'サインアップ') %>
-<div class="container">
-    <div class="text-center">
-        <h1>Sign up</h1>
-    </div>
+<%= render 'shared/form_common', title: 'サインアップ' %>
 
     <div class="form-width">
         <%= form_with(url: "/users/new", method: "post", multipart: true) do |f| %>

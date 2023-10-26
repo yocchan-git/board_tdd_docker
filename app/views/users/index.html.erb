@@ -1,8 +1,5 @@
-<% provide(:title, 'ユーザー一覧画面') %>
-<div class="container">
-    <div class="text-center">
-        <h1>ユーザー一覧画面</h1>
-    </div>
+<%# フォームと一緒なので、仕方なくindexはform_commonを使っている　%>
+<%= render 'shared/form_common', title: 'ユーザー一覧画面' %>
 
     <div class="form-width mb-5 mt-2">
         <%= search_form_for @q do |f| %>

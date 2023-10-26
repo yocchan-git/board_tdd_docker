@@ -1,8 +1,4 @@
-<% provide(:title, "ログイン") %>
-<div class="container">
-    <div class="text-center">
-        <h1>ログイン</h1>
-    </div>
+<%= render 'shared/form_common', title: 'ログイン' %>
 
     <div class="form-width">
         <%= form_with(url: "login", method: "post" ) do |f| %>

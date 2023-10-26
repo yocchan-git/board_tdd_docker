@@ -1,8 +1,4 @@
-<% provide(:title, '投稿フォーム') %>
-<div class="container">
-    <div class="text-center">
-        <h1>投稿フォーム</h1>
-    </div>
+<%= render 'shared/form_common', title: '投稿フォーム' %>
 
     <div class="form-width">
         <%= form_with(model: @post) do |f| %>

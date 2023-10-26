@@ -1,5 +1,6 @@
 class User < ApplicationRecord
     mount_uploader :image, ImageUploader
+
     has_many :posts, dependent:   :destroy
     has_many :comments, dependent:   :destroy
     has_many :likes, dependent:   :destroy
@@ -27,21 +28,19 @@ class User < ApplicationRecord
         BCrypt::Password.create(string, cost: cost)
     end
 
-    # フォローする
     def follow(other_user)
         following << other_user unless self == other_user
     end
 
-    # フォローを解除する
     def unfollow(other_user)
         following.delete(other_user)
     end
 
-    # フォローしているかの論理値を返す
     def following?(other_user)
         following.include?(other_user)
     end
 
+    # これがないとユーザーの検索ができなくなる
     def self.ransackable_attributes(auth_object = nil)
         ["created_at", "email", "id", "name", "password_digest", "updated_at"]
     end

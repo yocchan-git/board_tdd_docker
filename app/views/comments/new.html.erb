@@ -1,8 +1,4 @@
-<% provide(:title, 'コメント返信フォーム') %>
-<div class="container">
-    <div class="text-center">
-        <h1>コメントを書く</h1>
-    </div>
+<%= render 'shared/form_common', title: 'コメント返信フォーム' %>
 
     <div class="form-width">
         <%= form_with(url: "/comments/new", method: "post") do |f| %>

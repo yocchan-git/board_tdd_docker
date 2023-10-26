@@ -5,7 +5,6 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by(email: params[:email])
     if @user && @user.authenticate(params[:password])
-      reset_session
       login @user
       redirect_to posts_path, notice: "ログイン成功"
     else

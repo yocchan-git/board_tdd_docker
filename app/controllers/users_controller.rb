@@ -17,7 +17,6 @@ class UsersController < ApplicationController
                          password: params[:password],
                          image: params[:image])
         if @user.save
-            reset_session
             login @user
             redirect_to posts_path, notice: "新規登録に成功しました。"
         else

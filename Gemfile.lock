@@ -100,23 +100,12 @@ GEM
       ssrf_filter (~> 1.0)
     concurrent-ruby (1.2.2)
     crass (1.0.6)
-    database_cleaner (2.0.2)
-      database_cleaner-active_record (>= 2, < 3)
-    database_cleaner-active_record (2.1.0)
-      activerecord (>= 5.a)
-      database_cleaner-core (~> 2.0.0)
-    database_cleaner-core (2.0.1)
     date (3.3.3)
     debug (1.8.0)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
     erubi (1.12.0)
     execjs (2.9.1)
-    factory_bot (6.2.1)
-      activesupport (>= 5.0.0)
-    factory_bot_rails (6.2.0)
-      factory_bot (~> 6.2.0)
-      railties (>= 5.0.0)
     ffi (1.16.3)
     globalid (1.2.1)
       activesupport (>= 6.1)
@@ -180,6 +169,7 @@ GEM
     nio4r (2.5.9)
     nokogiri (1.15.4-aarch64-linux)
       racc (~> 1.4)
+    pg (1.5.4)
     psych (5.1.1.1)
       stringio
     public_suffix (5.0.3)
@@ -287,15 +277,14 @@ DEPENDENCIES
   bootstrap5-kaminari-views
   capybara
   carrierwave
-  database_cleaner
   debug
-  factory_bot_rails
   importmap-rails
   jbuilder
   kaminari
   mini_magick
   minitest-reporters
   mysql2 (~> 0.5)
+  pg
   puma (~> 5.0)
   rails (~> 7.0.8)
   rails-controller-testing

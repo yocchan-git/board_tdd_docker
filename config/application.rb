@@ -10,7 +10,7 @@ module BoardTdd
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
-    config.hosts << "board-8x1i.onrender.com"
+    config.hosts << "https://board-2xtb.onrender.com"
     config.i18n.default_locale = :ja
     
     # Configuration for the application, engines, and railties goes here.

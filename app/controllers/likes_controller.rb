@@ -8,6 +8,9 @@ class LikesController < ApplicationController
             format.html { redirect_to posts_path }
             format.turbo_stream
         end
+        rescue ActiveRecord::StaleObjectError
+            flash[:notice] = '競合が発生しました。再度お試しください。'
+            redirect_to posts_path
     end
 
     def destroy
@@ -18,5 +21,8 @@ class LikesController < ApplicationController
             format.html { redirect_to posts_path }
             format.turbo_stream
         end
+        rescue ActiveRecord::StaleObjectError
+            flash[:notice] = '競合が発生しました。再度お試しください。'
+            redirect_to posts_path
     end
 end

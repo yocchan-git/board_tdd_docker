@@ -71,13 +71,16 @@
 </div>
 
 <script>
+<% @posts.each do |post| %>
 document.addEventListener('turbolinks:load', function() {
-  let likeForms = document.querySelectorAll('.like_link');
-  likeForms.forEach(function(form) {
-    form.addEventListener('submit', function() {
-      let submitButton = this.querySelector('a');
-      submitButton.style.pointerEvents = 'none';
+    let likeForms = document.querySelectorAll('.like_link<%= post.id %>');
+    likeForms.forEach(function(form) {
+      form.addEventListener('click', function() {
+        let submitButton = this.querySelector('a');
+        submitButton.style.pointerEvents = 'none';
+      });
     });
-  });
 });
+
+<% end %>
 </script>

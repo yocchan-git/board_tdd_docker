@@ -69,3 +69,15 @@
         <%= paginate @posts, theme: 'bootstrap-5' %>
     <div>
 </div>
+
+<script>
+document.addEventListener('turbolinks:load', function() {
+  let likeForms = document.querySelectorAll('.like_link');
+  likeForms.forEach(function(form) {
+    form.addEventListener('submit', function() {
+      let submitButton = this.querySelector('a');
+      submitButton.style.pointerEvents = 'none';
+    });
+  });
+});
+</script>

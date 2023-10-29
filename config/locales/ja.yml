@@ -7,14 +7,45 @@ ja:
       next: <i class="fas fa-angle-right"></i>
       truncate: "..."
 
+  errors:
+    messages:
+      record_invalid: '入力内容に%{count}つのエラーがあります。'
+
   activerecord:
+    attributes:
+      user:
+        name: '名前:'
+        email: 'メールアドレス:'
+        password: 'パスワード:'
+      post:
+        title: 'タイトル:'
+        content: '内容:'
+      comment:
+        comment: 'コメント:'
     errors:
       models:
         user:
           attributes:
             name:
               blank: "空になっています。入力してください。"
+              too_long: "名前は%{count}文字以内で入力してください。"
             email:
               blank: "空になっています。入力してください。"
+              too_long: "メールアドレスは%{count}文字以内で入力してください。"
+              invalid: "有効なメールアドレスを入力してください。"
             password:
               blank: "空になっています。入力してください。"
+              too_short: "パスワードは%{count}文字以上で入力してください。"
+        post:
+          attributes:
+            title:
+              blank: "空になっています。入力してください。"
+              too_long: "タイトルは%{count}文字以内で入力してください。"
+            content:
+              blank: "空になっています。入力してください。"
+              too_long: "内容は%{count}文字以内で入力してください。"
+        comment:
+          attributes:
+            comment:
+              blank: "空になっています。入力してください。"
+              too_long: "コメントは%{count}文字以内で入力してください。"

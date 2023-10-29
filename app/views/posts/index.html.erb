@@ -75,7 +75,7 @@
 document.addEventListener('turbolinks:load', function() {
     let likeForms = document.querySelectorAll('.like_link<%= post.id %>');
     likeForms.forEach(function(form) {
-      form.addEventListener('click', function() {
+      form.addEventListener('submit', function() {
         let submitButton = this.querySelector('a');
         submitButton.style.pointerEvents = 'none';
       });

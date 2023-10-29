@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
     before_action :can_login_user, only:[:index, :show]
     before_action :edit_user_only_login_user, only:[:edit, :update]
+    before_action :not_login_user, only: [:new, :create]
 
     def index
         @q = User.ransack(params[:q])

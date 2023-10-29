@@ -73,6 +73,15 @@ input {
     display: flex;
     justify-content: flex-start;
 }
+.like_block{
+    text-align: end;
+    display: flex;
+    width: 170px;
+    margin-left: auto;
+}
+.like_left{
+    display: block;
+}
 
 .stats {
 overflow: auto;

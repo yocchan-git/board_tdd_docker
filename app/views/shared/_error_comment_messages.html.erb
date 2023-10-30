@@ -1,7 +1,7 @@
 <% if @comment.errors.any? %>
   <div id="error_explanation">
     <div class="alert alert-danger">
-      The form contains <%= pluralize(@comment.errors.count, "error") %>.
+      <%= @comment.errors.count %>件のエラーがあります。
     </div>
     <ul>
     <% @comment.errors.full_messages.each do |msg| %>

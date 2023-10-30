@@ -32,6 +32,12 @@ class ApplicationController < ActionController::Base
         end
     end
 
+    def not_login_user
+        if current_user
+            redirect_to posts_path, notice: "すでにログインしています。"
+        end
+    end
+
     private
         def current_user_check(name, path)
             if current_user

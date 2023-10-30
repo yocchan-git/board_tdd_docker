@@ -1,0 +1,6 @@
+<%= turbo_stream.update "like_form#{@post.id}" do %>
+  <%= render partial: "posts/like", locals: { like: @like } %>
+<% end %>
+<%= turbo_stream.update "like-count#{@post.id}" do %>
+  <%= Like.where(post_id: @post.id).count %>
+<% end %>

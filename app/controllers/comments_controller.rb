@@ -8,12 +8,13 @@ class CommentsController < ApplicationController
     end
 
     def create
-        @comment = Comment.new(user_id: params[:user_id], 
-                               post_id: params[:post_id],
-                               comment: params[:comment])
+        @post = Post.find(params[:post_id])
+        @comment = @post.comments.build(user_id: params[:user_id], 
+                                        comment: params[:comment])
         if @comment.save
             redirect_to posts_path, notice: "コメントを送信しました。"
         else
+            @post_id = params[:post_id]
             render "new", status: :unprocessable_entity
         end
     end

@@ -40,23 +40,25 @@
             <% end %>
 
             <% user = User.find_by(id: post.user_id) %>
-                <div class="text-end me-3">
-                    <p class="image-circle"><%= image_tag user.image.thumb.url %><%= link_to(user.name,"/users/#{user.id}", class: "link") %></p>
-                    <div class="mb-3">
-
-                    <% likes = Like.where(post_id: post.id).count %>
-                    <% if like = Like.find_by(user_id: current_user.id,post_id: post.id) %>
-                        <%= link_to("/likes/#{like.id}", data: { turbo_method: :delete }) do %>
-                            <i class="fa-solid fa-heart" style="color: #e811a4;"></i>
-                        <% end %>
-                    <% else %>
-                        <%= link_to("/likes/#{post.id}", data: { "turbo-method": :post }) do %>
-                            <i class="fa-regular fa-heart" style="color: #f005dc;"></i>
-                        <% end %>
-                    <% end %>
-                    <span><%= likes %></span>
-
-                        <%= link_to("コメントする", "/comments/#{post.id}/new",class: "btn btn-warning ms-3") %>
+                <div class="me-3">
+                    <p class="text-end image-circle"><%= image_tag user.image.thumb.url %><%= link_to(user.name,"/users/#{user.id}", class: "link") %></p>
+                    <div class="mb-3 like_block">
+                        <div class="like_left">
+                            <% likes_count = Like.where(post_id: post.id).count %>
+                            <% if like = Like.find_by(user_id: current_user.id,post_id: post.id) %>
+                                <div id="like_form<%= post.id %>" class="like_link">
+                                    <%= render 'like',like: like %>
+                                </div>
+                            <% else %>
+                                <div id="like_form<%= post.id %>" class="like_link">
+                                    <%= render 'unlike', post: post %>
+                                </div>
+                            <% end %>
+                        </div>
+                        <div class="like_right">
+                            <span id="like-count<%= post.id %>"><%= likes_count %></span>
+                            <%= link_to("コメントする", "/comments/#{post.id}/new",class: "btn btn-warning ms-3") %>
+                        </div>
                     </div>
                 </div>
             </div>
